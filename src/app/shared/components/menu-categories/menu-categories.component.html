@@ -1,0 +1,25 @@
+<div class="left-sidebar">
+  <h1>Menu</h1>
+  <div class="panel-group category-products" id="accordian"><!--category-productsr-->
+    <div class="panel panel-default" *ngFor="let article of menu">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordian" href="#{{article.name}}">
+            <span class="badge pull-right"><i class="fa fa-plus"></i></span>
+            {{ article.name }}
+          </a>
+        </h4>
+      </div>
+      <div id="{{article.name}}" class="panel-collapse collapse">
+        <div class="panel-body">
+          <ul>
+            <li *ngFor="let category of article.categories">
+              <a [href]="'/category/' + category._id">{{ category.name }} </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

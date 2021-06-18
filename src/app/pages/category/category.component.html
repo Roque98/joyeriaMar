@@ -1,0 +1,28 @@
+<section>
+  <div class="container">
+    <div class="row">
+
+      
+      <div class="col-sm-3">
+        <app-menu-categories></app-menu-categories>
+      </div>
+
+      
+      
+      <div class="col-sm-9 padding-right">
+        
+        <div class="features_items">
+          
+          <h2 class="title text-center">Inciales</h2>
+          <div class="col-sm-4" *ngFor="let product of products">
+            <app-product-card></app-product-card>
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</section>

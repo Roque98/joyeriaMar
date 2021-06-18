@@ -1,0 +1,23 @@
+<div class="product-details">
+
+  <div class="col-sm-5">
+
+    <div class="view-product">
+      <img src="assets/images/product-details/1.jpg" alt="" />
+    </div>
+
+  </div>
+
+  <div class="col-sm-7">
+    <div class="product-information">
+      <h2>{{ product.name }}</h2>
+      <span>
+        <span>US {{ product.finalPrice | currency: '$' }}</span>
+      </span>
+      <p><b>Precio mayoreo:</b> {{ product.wholesalePrice | currency:'$'}}</p>
+      <p><b>Availability:</b> {{ product.quantity }} items In Stock</p>
+      <p><b>Tipo de articulo:</b> Collares</p>
+      <p><b>Categoria:</b> Inciales</p>
+    </div>
+  </div>
+</div>

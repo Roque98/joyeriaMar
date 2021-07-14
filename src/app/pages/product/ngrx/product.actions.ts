@@ -1,25 +1,14 @@
 import { createAction, props } from '@ngrx/store';
 import { Product } from 'src/app/core/interfaces/product.interface';
 
+// load
 export const loadProduct = createAction(
-  '[Product page] load product',
-  props<{ idProduct: string }>()
-);
-
-export const loadProductSuccess = createAction(
-  '[Product page] load product success',
-  props<{ product: Product}>()
-)
-
-export const loadProductError = createAction(
-  '[Product page] load product error',
-  props<{ error: any}>()
+  '[Products page] load product',
+  props<{products: Product[]}>()
 )
 
 const productActions = {
-  loadProduct,
-  loadProductSuccess,
-  loadProductError
+  loadProduct
 }
 
 export default productActions;

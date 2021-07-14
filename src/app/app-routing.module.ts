@@ -7,9 +7,9 @@ import { ProductPage } from './pages/product/product.page';
 
 const routes: Routes = [
   { path: 'home', component: HomePage },
-  { path: 'category/:id', component: CategoryComponent },
-  { path: 'article/:id', component: ArticlesPage },
-  { path: 'product/:id', component: ProductPage },
+  { path: 'article/:idArticle',component: ArticlesPage },
+  { path: 'article/:idArticle/category/:idCategory', component: CategoryComponent },
+  { path: 'product/:idProduct', component: ProductPage },
   { path: '**', redirectTo: 'home'}
 ];
 

@@ -1,8 +1,10 @@
 export interface Product {
-  _id?: string;
+  _id: string;
   name: string;
   finalPrice: number;
   wholesalePrice: number;
-  imageUrl: string;
+  providerPrice: number;
+  image: string;
   quantity: number;
+  categoryId: string;
 }

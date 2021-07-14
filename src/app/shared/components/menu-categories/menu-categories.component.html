@@ -1,20 +1,24 @@
-<div class="left-sidebar">
+<!-- <div class="left-sidebar" *ngIf="this.store.select('articles') | async as articlesState">
   <h1>Menu</h1>
-  <div class="panel-group category-products" id="accordian"><!--category-productsr-->
-    <div class="panel panel-default" *ngFor="let article of menu">
+  <div class="panel-group category-products" id="accordian">
+    <div class="panel panel-default" *ngFor="let article of articlesState.articles">
       <div class="panel-heading">
         <h4 class="panel-title">
-          <a data-toggle="collapse" data-parent="#accordian" href="#{{article.name}}">
+          <a id="{{article._id}}Element" data-toggle="collapse" data-parent="#accordian" href="#{{article._id}}">
             <span class="badge pull-right"><i class="fa fa-plus"></i></span>
             {{ article.name }}
           </a>
         </h4>
       </div>
-      <div id="{{article.name}}" class="panel-collapse collapse">
+      <div id="{{article._id}}" class="panel-collapse collapse">
         <div class="panel-body">
           <ul>
             <li *ngFor="let category of article.categories">
-              <a [href]="'/category/' + category._id">{{ category.name }} </a>
+              <a
+                [routerLink]="'/article/' + article._id + '/category/' + category._id"
+                [routerLinkActive]="'subItem'">
+                {{ category.name }} 
+              </a>
             </li>
           </ul>
         </div>
@@ -22,4 +26,4 @@
     </div>
   </div>
 
-</div>
+</div> -->

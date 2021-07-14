@@ -1,13 +1,9 @@
-<div class="product-image-wrapper">
+<div class="product-image-wrapper" [routerLink]="'./category/' + category._id">
   <div class="single-products">
-      <div class="productinfo text-center">
-        <img src="assets/images/home/product1.jpg" alt="" />
-        <h3>{{article.name}}</h3>
-      </div>
-      <div class="product-overlay">
-        <div class="overlay-content">
-          <a href="/category/1" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Ver categoria</a>
-        </div>
-      </div>
+    <div class="productinfo text-center">
+      <img [src]="category.image" alt="" />
+      <h3>{{category.name}}</h3>
+    </div>
 
+  </div>
 </div>

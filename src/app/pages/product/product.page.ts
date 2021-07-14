@@ -1,43 +1,86 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Subscription } from 'rxjs';
+import { AppState } from 'src/app/core/interfaces/appState.interface';
+import { Article } from 'src/app/core/interfaces/article.interface';
+import { Category } from 'src/app/core/interfaces/category.interface';
 import { Product } from 'src/app/core/interfaces/product.interface';
-import { loadProduct } from './ngrx/product.actions';
-import { State } from './ngrx/product.reducer';
 
 @Component({
   selector: 'app-product',
   templateUrl: './product.page.html',
-  styleUrls: ['./product.page.scss']
+  styleUrls: ['./product.page.scss'],
 })
-export class ProductPage implements OnInit {
+export class ProductPage implements OnInit, OnInit {
+  idProduct = '';
 
-  id = '';
-  // product$: Observable<Product> = this.store.select(state=>state.product)
-  product ={
-    finalPrice: 13,
-    imageUrl:
-      'https://image.shutterstock.com/image-vector/empty-placeholder-image-icon-design-260nw-1366372628.jpg',
-    name: 'cursiva',
-    quantity: 0,
-    wholesalePrice: 0,
-  }
+  article: Article | undefined;
+  category: Category | undefined;
+  product: Product | undefined;
+
+  subscription = new Subscription();
 
   constructor(
     private activatedRoute: ActivatedRoute,
-    private store: Store<State>
-  ) { 
-    this.id = this.activatedRoute.snapshot.params.id;
+    private store: Store<AppState>,
+    private router: Router
+  ) {
+    this.activatedRoute.params.subscribe((params) => {
+      // const idArticle = params.idArticle;
+      // const idCategory = params.idCategory;
+      this.idProduct = params.idProduct;
+
+      // this.getArticle(idArticle);
+      // this.getCategory(idCategory);
+    });
   }
 
   ngOnInit(): void {
-    // this.store.dispatch(loadProduct({idProduct: this.id}))
-    // this.product$.subscribe((product) => {
-    //   this.product = product;
-    //   console.log(this.product);
-      
-    // })
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.getProducts(this.idProduct);
+    
+  }
+
+  private getArticle(idArticle: string) {
+    this.store.select('articlesFeature').subscribe((articleState) => {
+      this.article = articleState.articles.find(
+        (article) => article._id === idArticle
+      );
+      if (!this.article) this.router.navigateByUrl('/article');
+    });
+  }
+
+  public getCategory(idCategory: string) {
+    this.store.select('categoriesFeature').subscribe((categoriesState) => {
+      this.category = categoriesState.categories.find(
+        (category) => category._id === idCategory
+      );
+      if (!this.article) this.router.navigateByUrl('/article');
+    });
+  }
+
+  public getProducts(idProduct: string) {
+    this.store.select('productsFeature').subscribe((productsState) => {
+      this.product = productsState.products.find(
+        (product) => product._id === idProduct
+      );
+      if (!this.product) this.router.navigateByUrl('/home');
+
+      this.store.select('categoriesFeature').subscribe((categoryState) => {
+        this.category = categoryState.categories.find(
+          (category) => category._id === this.product?.categoryId
+        );
+        if (!this.product) this.router.navigateByUrl('/home');
+
+        this.store.select('articlesFeature').subscribe((articleState) => {
+          this.article = articleState.articles.find(
+            (article) => article._id === this.category?.articleId
+          );
+        });
+      });
+    });
   }
 
 }

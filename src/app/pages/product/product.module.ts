@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 import { ProductPage } from './product.page';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { RouterModule } from '@angular/router';
 import { StoreModule } from '@ngrx/store';
-import * as fromProduct from './ngrx/product.reducer';
-import { EffectsModule } from '@ngrx/effects';
-import { ProductEffects } from './ngrx/product.effects';
+import { productsFeatureKey, ProductsReducer } from './ngrx/product.reducer';
+
 
 
 
@@ -18,8 +18,8 @@ import { ProductEffects } from './ngrx/product.effects';
   imports: [
     CommonModule,
     SharedModule,
-    StoreModule.forFeature(fromProduct.productFeatureKey, fromProduct.reducer),
-    EffectsModule.forFeature([ProductEffects])
+    RouterModule,
+    StoreModule.forFeature(productsFeatureKey, ProductsReducer)
   ]
 })
 export class ProductModule { }

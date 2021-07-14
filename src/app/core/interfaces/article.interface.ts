@@ -1,7 +1,5 @@
-import { Category } from "./category.interface";
-
 export interface Article {
-  image: string;
+  _id: string;
   name: string;
-  categories: Category[] | string[];
+  removed: boolean;
 }

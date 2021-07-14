@@ -3,8 +3,14 @@
     <div class="row">
 
       
-      <div class="col-sm-3">
-        <app-menu-categories></app-menu-categories>
+      <div class="col-sm-12">
+        <h3 > 
+          <a [routerLink]="['/home']" >home</a>  
+          > 
+          <a [routerLink]="['/article/' + article?._id]" >{{ article?.name }}</a> 
+          >
+          {{category?.name}}
+        </h3>
       </div>
 
       
@@ -12,10 +18,11 @@
       <div class="col-sm-9 padding-right">
         
         <div class="features_items">
+          <!-- <h3>Collares</h3> -->
+          <h2 class="title text-center"> {{ category?.name}}</h2>
           
-          <h2 class="title text-center">Inciales</h2>
           <div class="col-sm-4" *ngFor="let product of products">
-            <app-product-card></app-product-card>
+            <app-product-card [product]="product"></app-product-card>
           </div>
 
 

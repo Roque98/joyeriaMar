@@ -7,7 +7,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class CardArticleComponent implements OnInit {
 
-  @Input() article = {
+  @Input() category = {
     _id: '1',
     name: 'iniciales',
     image: ''

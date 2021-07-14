@@ -8,6 +8,7 @@ import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { environment } from 'src/environments/environment';
 import { EffectsModule } from '@ngrx/effects';
+import { RouterModule } from '@angular/router';
 
 const components = [FooterComponent, HeaderComponent];
 
@@ -16,6 +17,7 @@ const components = [FooterComponent, HeaderComponent];
   imports: [
     CommonModule,
     HttpClientModule,
+    RouterModule,
     StoreModule.forRoot({}),
     EffectsModule.forRoot(),
     StoreDevtoolsModule.instrument({

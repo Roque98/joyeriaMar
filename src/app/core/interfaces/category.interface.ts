@@ -1,7 +1,7 @@
-import { Product } from "./product.interface";
-
 export interface Category {
+  _id: string;
   image: string;
   name: string;
-  products: Product[] | string [];
+  articleId: string;
+  removed: boolean;
 }
